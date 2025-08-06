@@ -237,4 +237,79 @@ button:focus-visible {
   padding: 10px;
   border-radius: 4px;
   margin: 10px 0;
+}
+
+/* Demographics Bar Styles */
+.demographics-bar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.demographics-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.demographics-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 120px;
+}
+
+.demographics-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.demographics-value {
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+}
+
+/* Responsive design for demographics bar */
+@media (max-width: 768px) {
+  .demographics-content {
+    gap: 15px;
+  }
+  
+  .demographics-item {
+    min-width: 100px;
+  }
+  
+  .demographics-value {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .demographics-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .demographics-item {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    min-width: auto;
+  }
+  
+  .demographics-label {
+    margin-bottom: 0;
+    min-width: 60px;
+  }
 } 

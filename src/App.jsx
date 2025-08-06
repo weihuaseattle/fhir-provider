@@ -10,6 +10,7 @@ import {
 } from './utils/fhir';
 import PatientDetails from './components/PatientDetails';
 import ObservationCategory from './components/ObservationCategory';
+import DemographicsBar from './components/DemographicsBar';
 
 let bRunOnce = false
 function App() {
@@ -23,6 +24,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [launchProcessed, setlaunchProcessed] = useState(false);
   const [callbackProcessed, setCallbackProcessed] = useState(false);
+  const [needPatientBanner, setNeedPatientBanner] = useState(false);
 
   useEffect(() => {
     const iss = searchParams.get('iss');
@@ -183,6 +185,11 @@ function App() {
 
       setAccessToken(tokenResponse.access_token);
       setFhirBaseUrl(iss);
+      
+      // Check if patient banner is needed from token response
+      if (tokenResponse.need_patient_banner === true) {
+        setNeedPatientBanner(true);
+      }
 
       // Step 7: Get patient details and store encounter info
       const patientId = tokenResponse.patient;
@@ -281,6 +288,11 @@ function App() {
   return (
     <div className="container">
       {error && <div className="error">{error}</div>}
+      
+      {/* Show demographics bar if need_patient_banner is true in token response */}
+      {patient && needPatientBanner && (
+        <DemographicsBar patient={patient} />
+      )}
       
       {patient && (
         <PatientDetails
